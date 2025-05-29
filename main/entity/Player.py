@@ -46,8 +46,8 @@ class Player(BaseEntity):
         if self.keyboardHandler.is_just_released('Down'):
             self.ay = 0
         if self.keyboardHandler.is_just_pressed('space'):
-            if self.bulletShooter.cooldown == 0:
-                self.bulletShooter.shoot(self.vy,self.x+50, self.y)
+            if self.bulletShooter.isReady():
+                self.bulletShooter.shoot(self.vy,self.x+self.width/2, self.y)
                 self.bulletShooter.cooldown = self.bulletShooter.COOLDOWN_TIME
 
 
@@ -68,7 +68,7 @@ class Player(BaseEntity):
         self.vy *= 0.95
 
 
-        if self.bulletShooter.cooldown > 0:
+        if not self.bulletShooter.isReady():
             self.bulletShooter.cooldown -= 1
 
 

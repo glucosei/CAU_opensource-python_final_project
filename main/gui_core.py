@@ -1170,6 +1170,9 @@ class Window:
                 player = None
                 bulletController = None
                 collisionController = None
+                enemyController = None
+                width = 800
+                height = 950
 
 
 

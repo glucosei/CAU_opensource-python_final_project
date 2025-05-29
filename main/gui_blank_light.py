@@ -23,7 +23,7 @@ def initialize(timestamp):
     w.data.player = Player(w,300,750,100,100,100, w.data.keyboardHandler)
     w.data.bulletController = BulletController(w)
     w.data.collisionController = CollisionController(w, w.data.player)
-
+    w.data.enemyController = EnemyController(w)
 
 
 def update(timestamp):
@@ -35,6 +35,7 @@ def update(timestamp):
     w.data.keyboardHandler.update()
     w.data.bulletController.update()
     w.data.collisionController.update()
+    w.data.enemyController.stageOneUpdate()
 
 w.initialize = initialize
 w.update = update
