@@ -1,5 +1,6 @@
 from main.entity.BaseEntity import BaseEntity
 from main.entity.utils import *
+from main.entity.utils.SkillFlash import SkillFlash
 
 
 class Player(BaseEntity):
@@ -22,6 +23,7 @@ class Player(BaseEntity):
         self.ay = 0
 
         self.bulletShooter = BulletShooter(w, -1, 10, 10)
+        self.skillFlash = SkillFlash(w,self, 60*1)
 
     def onHit(self, damage):
         self.hp -= damage
@@ -50,6 +52,11 @@ class Player(BaseEntity):
                 self.bulletShooter.shoot(self.vy,self.x+self.width/2, self.y)
                 self.bulletShooter.cooldown = self.bulletShooter.COOLDOWN_TIME
 
+        if self.keyboardHandler.is_just_pressed('f'):
+            if self.skillFlash.isReady():
+                self.skillFlash.flash(self.vx,self.vy)
+                self.skillFlash.cooldown = self.skillFlash.COOLDOWN_TIME
+
 
         if self.x < 0 or self.x > 700:
             self.vx -= (7*self.vx)/3
@@ -70,6 +77,9 @@ class Player(BaseEntity):
 
         if not self.bulletShooter.isReady():
             self.bulletShooter.cooldown -= 1
+
+        if not self.skillFlash.isReady():
+            self.skillFlash.cooldown -= 1
 
 
 

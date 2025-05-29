@@ -1,4 +1,4 @@
-from main.entity import StageOneEnemy
+from main.entity import EnemyTypeA
 import random as r
 
 class EnemySpawner:
@@ -13,7 +13,7 @@ class EnemySpawner:
                     ay < by + bh and ay + ah > by
             )
 
-    def _findYZeroEnemyPosition(self, enemy_width, enemy_height, ):
+    def _findYZeroEnemyPosition(self, enemy_width, enemy_height):
         if len(self.w.data.enemyList) <= self.MAX_ENEMIES:
 
             overlap = False
@@ -36,10 +36,12 @@ class EnemySpawner:
 
         return None  # 실패 시 None 반환
 
-
     def stageOneSpawn(self):
+        EnemyTypeA(self.w, self.w.data.width/2-50, 0)
+
+    def stageTwoSpawn(self):
         result = self._findYZeroEnemyPosition(100, 100)
         if result is not None:
             x, y=result
-            StageOneEnemy(self.w, x, y)
+            EnemyTypeA(self.w, x, y)
 

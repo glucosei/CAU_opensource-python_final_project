@@ -20,7 +20,7 @@ def initialize(timestamp):
     '적절한 설명 메시지'
     w.data.keyboardHandler = KeyboardHandler(w)
     w.data.mouseHandler = MouseHandler(w)
-    w.data.player = Player(w,300,750,100,100,100, w.data.keyboardHandler)
+    w.data.player = Player(w,(w.data.width/2)-50,750,100,100,100, w.data.keyboardHandler)
     w.data.bulletController = BulletController(w)
     w.data.collisionController = CollisionController(w, w.data.player)
     w.data.enemyController = EnemyController(w)
