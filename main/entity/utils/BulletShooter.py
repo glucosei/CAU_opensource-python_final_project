@@ -1,7 +1,7 @@
 from main.entity.Bullet import Bullet
 
 
-class ShootBullet:
+class BulletShooter:
 
     def __init__(self, w, heading, damage, speed):
         """

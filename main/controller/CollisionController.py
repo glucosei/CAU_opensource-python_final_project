@@ -34,3 +34,10 @@ class CollisionController:
                 self.player.onHit(bullet.damage)
                 self.w.deleteObject(bullet.id)
                 self.w.data.bulletList.remove(bullet)
+
+        for enemy in self.w.data.enemyList:
+            ex, ey = self.w.getPosition(enemy.id)
+            ew, eh = self.w.getSize(enemy.id)
+            if self._isColliding(px,py,pw,ph,ex,ey,ew,eh):
+                enemy.onHit(50)
+                self.w.data.player.onHit(50)

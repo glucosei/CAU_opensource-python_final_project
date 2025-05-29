@@ -21,16 +21,14 @@ class Player(BaseEntity):
         self.ax = 0
         self.ay = 0
 
-        self.shootBullet = ShootBullet(w, -1, 10, 10)
+        self.bulletShooter = BulletShooter(w, -1, 10, 10)
 
     def onHit(self, damage):
         self.hp -= damage
-
-    def update(self):
-
         if self.hp <= 0:
             print('dead')
 
+    def update(self):
         if self.keyboardHandler.is_pressed('Left'):
             self.ax -= self.da
         if self.keyboardHandler.is_pressed('right'):
@@ -48,9 +46,9 @@ class Player(BaseEntity):
         if self.keyboardHandler.is_just_released('Down'):
             self.ay = 0
         if self.keyboardHandler.is_just_pressed('space'):
-            if self.shootBullet.cooldown == 0:
-                self.shootBullet.shoot(self.vy,self.x+50, self.y)
-                self.shootBullet.cooldown = self.shootBullet.COOLDOWN_TIME
+            if self.bulletShooter.cooldown == 0:
+                self.bulletShooter.shoot(self.vy,self.x+50, self.y)
+                self.bulletShooter.cooldown = self.bulletShooter.COOLDOWN_TIME
 
 
         if self.x < 0 or self.x > 700:
@@ -63,15 +61,15 @@ class Player(BaseEntity):
         self.vx += self.ax
         self.vy += self.ay
 
-        self.x, self.y = UpdateLocation.update(self.w, self.id, self.x, self.y, self.vx, self.vy)
+        PositionUpdater.update(self.w, self, self.vx, self.vy)
 
 
         self.vx *= 0.95     #마찰
         self.vy *= 0.95
 
 
-        if self.shootBullet.cooldown > 0:
-            self.shootBullet.cooldown -= 1
+        if self.bulletShooter.cooldown > 0:
+            self.bulletShooter.cooldown -= 1
 
 
 

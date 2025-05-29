@@ -1,4 +1,4 @@
-from main.entity.utils.ShootBullet import ShootBullet
-from main.entity.utils.UpdateLocation import UpdateLocation
+from main.entity.utils.BulletShooter import BulletShooter
+from main.entity.utils.PositionUpdater import PositionUpdater
 
-__all__ = ['ShootBullet', 'UpdateLocation']
+__all__ = ['BulletShooter', 'PositionUpdater']
