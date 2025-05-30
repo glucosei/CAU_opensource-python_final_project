@@ -22,9 +22,8 @@ def initialize(timestamp):
     w.data.mouseHandler = MouseHandler(w)
     w.data.player = Player(w,(w.data.width/2)-50,750,100,100,100, w.data.keyboardHandler)
     w.data.bulletController = BulletController(w)
-    w.data.collisionController = CollisionController(w, w.data.player)
+    w.data.collisionController = CollisionController(w)
     w.data.enemyController = EnemyController(w)
-
 
 def update(timestamp):
     '''

@@ -1,10 +1,11 @@
+
 from main.controller.EnemySpawner import EnemySpawner
 
 
 class EnemyController:
     def __init__(self,w):
         self.w = w
-        self.spawnCooltime = 0
+        self.spawnCooldown = 0
         self.SPAWN_COOLTIME = 60*10
         self.enemySpawner = EnemySpawner(w)
 
@@ -14,12 +15,12 @@ class EnemyController:
 
     def stageOneUpdate(self):
 
-        if self.spawnCooltime <= 0:
+        if self.spawnCooldown <= 0:
             self.enemySpawner.stageOneSpawn()
-            self.spawnCooltime = self.SPAWN_COOLTIME
+            self.spawnCooldown = self.SPAWN_COOLTIME
 
         else:
-            self.spawnCooltime -= 1
+            self.spawnCooldown -= 1
 
         for enemy in self.w.data.enemyList:
             enemy.update()

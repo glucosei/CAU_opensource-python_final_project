@@ -13,7 +13,7 @@ class SkillFlash:
         self.obj.y += vy*(1/2)*60
 
         objWidth, objHeight = self.w.getSize(self.obj.id)
-        print(self.obj.x, objWidth-objWidth)
+        #print(self.obj.x, objWidth-objWidth)
 
         if self.obj.x < 0:
             self.obj.x = 0
