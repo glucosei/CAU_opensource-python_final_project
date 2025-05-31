@@ -13,6 +13,7 @@ import gui_core as gui
 from main.entity import *
 from main.input import *
 from main.controller import *
+from main.ui.PlayerStatusBar import PlayerStatusBar
 
 w = gui.Window()
 
@@ -22,6 +23,7 @@ def initialize(timestamp):
     w.data.keyboardHandler = KeyboardHandler(w)
     w.data.mouseHandler = MouseHandler(w)
     w.data.player = Player(w,(w.data.width/2)-50,750,100,100,100, w.data.keyboardHandler)
+    w.data.player.playerStatusBar = PlayerStatusBar(w)
     w.data.bulletController = BulletController(w)
     w.data.collisionController = CollisionController(w)
     w.data.stageController = StageController(w)

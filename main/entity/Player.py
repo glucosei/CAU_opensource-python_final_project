@@ -25,6 +25,9 @@ class Player(BaseEntity):
         self.bulletShooter = BulletShooter(w, -1, 10, 10)
         self.skillFlash = SkillFlash(w,self, 60*1)
 
+
+        self.playerStatusBar = None
+
     def onHit(self, damage):
         self.hp -= damage
         if self.hp <= 0:
@@ -69,6 +72,8 @@ class Player(BaseEntity):
         self.vy += self.ay
 
         PositionUpdater.update(self.w, self, self.vx, self.vy)
+        self.playerStatusBar.update()
+
 
 
         self.vx *= 0.95     #마찰
