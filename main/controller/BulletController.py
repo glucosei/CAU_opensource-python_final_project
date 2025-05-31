@@ -42,5 +42,4 @@ class BulletController:
             PositionUpdater.update(self.w, bullet, 0, bullet.v )
 
             if bullet.y < -100 or bullet.y > 950:
-                self.w.deleteObject(bullet.id)
-                self.w.data.bulletList.remove(bullet)
+                bullet.onDeath()

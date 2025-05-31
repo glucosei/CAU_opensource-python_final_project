@@ -86,19 +86,17 @@ class CollisionController:
 
                 if self._isColliding(bx, by, bw, bh, ex, ey, ew, eh):
                     enemy.onHit(bullet.damage)
-                    self.w.deleteObject(bullet.id)
                     bulletsToRemove.append(bullet)
 
             if self._isColliding(bx, by, bw, bh, px, py, pw, ph):
                 self.w.data.player.onHit(bullet.damage)
-                self.w.deleteObject(bullet.id)
                 bulletsToRemove.append(bullet)
 
 
 
         for bullet in bulletsToRemove:
             if bullet in self.w.data.bulletList:
-                self.w.data.bulletList.remove(bullet)
+                bullet.onDeath()
 
 
 
@@ -107,7 +105,7 @@ class CollisionController:
             ew, eh = self.w.getSize(enemy.id)
             if self._isColliding(px,py,pw,ph,ex,ey,ew,eh):
                 enemy.onHit(10)
-                self.w.data.w.data.player.onHit(10)
+                self.w.data.player.onHit(10)
 
 
         for enemy in self.w.data.enemyList:
@@ -117,6 +115,4 @@ class CollisionController:
 
         for enemy in enemysToRemove:
             if enemy in self.w.data.enemyList:
-                self.w.data.enemyList.remove(enemy)
-                self.w.deleteObject(enemy.id)
-
+                enemy.onDeath()

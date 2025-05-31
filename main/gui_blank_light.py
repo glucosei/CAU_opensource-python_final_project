@@ -9,6 +9,7 @@ gui 모듈을 사용하기 위한 기본 구조를 미리 적어 둔 파일입�
 '''
 
 import gui_core as gui
+
 from main.entity import *
 from main.input import *
 from main.controller import *
@@ -23,7 +24,8 @@ def initialize(timestamp):
     w.data.player = Player(w,(w.data.width/2)-50,750,100,100,100, w.data.keyboardHandler)
     w.data.bulletController = BulletController(w)
     w.data.collisionController = CollisionController(w)
-    w.data.enemyController = EnemyController(w)
+    w.data.stageController = StageController(w)
+    w.data.hpBarController = HpBarController(w)
 
 def update(timestamp):
     '''
@@ -34,7 +36,9 @@ def update(timestamp):
     w.data.keyboardHandler.update()
     w.data.bulletController.update()
     w.data.collisionController.update()
-    w.data.enemyController.stageOneUpdate()
+    w.data.stageController.update()
+    w.data.hpBarController.update()
+
 
 w.initialize = initialize
 w.update = update

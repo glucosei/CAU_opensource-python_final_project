@@ -1165,12 +1165,14 @@ class Window:
                 '''
                 bulletList = []
                 enemyList = []
+                hpBarList = []
                 keyboardHandler = None
                 mouseHandler = None
                 player = None
                 bulletController = None
                 collisionController = None
-                enemyController = None
+                stageController = None
+                hpBarController = None
                 width = 800
                 height = 950
 

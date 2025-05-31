@@ -1,5 +1,6 @@
 from main.entity.BaseEntity import BaseEntity
 from main.entity.utils import BulletShooter
+from main.ui.HpBar import HpBar
 
 
 class BaseEnemy(BaseEntity):
@@ -12,9 +13,23 @@ class BaseEnemy(BaseEntity):
         self.bulletShooter = BulletShooter(w, 1, 10, 10)
         self.w.data.enemyList.append(self)
 
+        self.hpBar = HpBar(w, self)
+        self.currentHpId = self.hpBar.currentHpId
+        self.maxHpId = self.hpBar.maxHpId
+        self.w.data.hpBarList.append(self.hpBar)
+        self.hpBar = None
+
     def onHit(self, damage):
         self.hp -= damage
 
+
+    def onDeath(self):
+        self.w.deleteObject(self.id)
+        self.w.data.enemyList.remove(self)
+        self.w.deleteObject(self.currentHpId)
+        self.w.deleteObject(self.maxHpId)
+
+        self.w.data.hpBarList = [hpBar for hpBar in self.w.data.hpBarList if hpBar.currentHpId != self.currentHpId]
 
     def update(self):
         pass

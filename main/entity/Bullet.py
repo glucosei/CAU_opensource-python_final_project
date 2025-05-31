@@ -9,5 +9,8 @@ class Bullet(BaseEntity):
         self.v = v
         w.data.bulletList.append(self)
 
+    def onDeath(self):
+        self.w.deleteObject(self.id)
+        self.w.data.bulletList.remove(self)
 
 

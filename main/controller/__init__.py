@@ -9,5 +9,7 @@ from main.controller.BulletController import BulletController
 from main.controller.CollisionController import CollisionController
 from main.controller.EnemyController import EnemyController
 from main.controller.EnemySpawner import EnemySpawner
+from main.controller.StageController import StageController
+from main.controller.HpBarController import HpBarController
 
-__all__ = ['BulletController', 'CollisionController', 'EnemyController', 'EnemySpawner']
+__all__ = ['BulletController', 'CollisionController', 'EnemyController', 'EnemySpawner', 'StageController', 'HpBarController']
