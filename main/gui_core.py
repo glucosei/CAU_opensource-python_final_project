@@ -501,7 +501,7 @@ class Window:
     def hideObject(self, number):
         '''
         일련번호가 number인 요소를 '안' 보여주기 시작합니다.
-
+d
         number: 안 보여주기 시작할 요소의 일련번호
         '''
 

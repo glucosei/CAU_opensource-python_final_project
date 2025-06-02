@@ -9,9 +9,8 @@ class BaseEnemy(BaseEntity):
         self.MAX_HP = hp
         self.hp = hp
         self.id = w.newRectangle(x,y,width,height, fill_color='red')
-        w.data.enemyList.append(self)
-        self.bulletShooter = BulletShooter(w, 1, 10, 10)
         self.w.data.enemyList.append(self)
+        self.bulletShooter = BulletShooter(w, 10, 0, 10, 'e', 600/60)
 
         self.hpBar = HpBar(w, self)
         self.currentHpId = self.hpBar.currentHpId
@@ -20,7 +19,8 @@ class BaseEnemy(BaseEntity):
         self.hpBar = None
 
     def onHit(self, damage):
-        self.hp -= damage
+        self.hp = max(self.hp-damage, 0)
+
 
 
     def onDeath(self):

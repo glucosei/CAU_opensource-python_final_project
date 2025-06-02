@@ -22,7 +22,7 @@ def initialize(timestamp):
     '적절한 설명 메시지'
     w.data.keyboardHandler = KeyboardHandler(w)
     w.data.mouseHandler = MouseHandler(w)
-    w.data.player = Player(w,(w.data.width/2)-50,750,100,100,100, w.data.keyboardHandler)
+    w.data.player = Player(w,(w.data.width/2)-25,750,60,60,1000)
     w.data.player.playerStatusBar = PlayerStatusBar(w)
     w.data.bulletController = BulletController(w)
     w.data.collisionController = CollisionController(w)
@@ -34,11 +34,15 @@ def update(timestamp):
     여러 줄짜리
     설명 메시지
     '''
+    if w.data.stageController.stage == 0 or w.data.stageController.stage == 11:
+        w.data.stageController.update()
+        w.data.mouseHandler.update()
+        return
+    w.data.stageController.update()
     w.data.player.update()
     w.data.keyboardHandler.update()
     w.data.bulletController.update()
     w.data.collisionController.update()
-    w.data.stageController.update()
     w.data.hpBarController.update()
 
 

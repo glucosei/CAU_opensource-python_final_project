@@ -80,17 +80,23 @@ class CollisionController:
             bx, by = self.w.getPosition(bullet.id)
             bw, bh = self.w.getSize(bullet.id)
 
-            for enemy in self.w.data.enemyList:
-                ex, ey = self.w.getPosition(enemy.id)
-                ew, eh = self.w.getSize(enemy.id)
 
-                if self._isColliding(bx, by, bw, bh, ex, ey, ew, eh):
-                    enemy.onHit(bullet.damage)
+            if bullet.objType == 'e':
+                if self._isColliding(bx, by, bw, bh, px, py, pw, ph):
+                    self.w.data.player.onHit(bullet.damage)
                     bulletsToRemove.append(bullet)
 
-            if self._isColliding(bx, by, bw, bh, px, py, pw, ph):
-                self.w.data.player.onHit(bullet.damage)
-                bulletsToRemove.append(bullet)
+            elif bullet.objType == 'p':
+                for enemy in self.w.data.enemyList:
+                    ex, ey = self.w.getPosition(enemy.id)
+                    ew, eh = self.w.getSize(enemy.id)
+
+                    if self._isColliding(bx, by, bw, bh, ex, ey, ew, eh):
+                        enemy.onHit(bullet.damage)
+                        bulletsToRemove.append(bullet)
+                        break
+
+
 
 
 
@@ -104,8 +110,8 @@ class CollisionController:
             ex, ey = self.w.getPosition(enemy.id)
             ew, eh = self.w.getSize(enemy.id)
             if self._isColliding(px,py,pw,ph,ex,ey,ew,eh):
-                enemy.onHit(10)
-                self.w.data.player.onHit(10)
+                enemy.onHit(1)
+                self.w.data.player.onHit(1)
 
 
         for enemy in self.w.data.enemyList:

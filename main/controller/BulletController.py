@@ -39,7 +39,7 @@ class BulletController:
 
 
         for bullet in self.w.data.bulletList:
-            PositionUpdater.update(self.w, bullet, 0, bullet.v )
+            PositionUpdater.update(self.w, bullet, bullet.vx, bullet.vy )
 
             if bullet.y < -100 or bullet.y > 950:
                 bullet.onDeath()
