@@ -66,7 +66,7 @@ class EnemyController:
         for enemy in self.w.data.enemyList:
             enemy.update()
             if enemy.y >= self.w.data.height:
-                self.w.data.player.onHit(enemy.hp)
+                self.w.data.player.onHit(enemy.hp*1.5)
                 enemysToRemove.append(enemy)
 
         for enemy in enemysToRemove:

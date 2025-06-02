@@ -10,7 +10,7 @@ class BaseEnemy(BaseEntity):
         self.hp = hp
         self.id = w.newRectangle(x,y,width,height, fill_color='red')
         self.w.data.enemyList.append(self)
-        self.bulletShooter = BulletShooter(w, 10, 0, 10, 'e', 600/60)
+        self.bulletShooter = BulletShooter(w, 10, 0, 10, 'e',12,12, 600/60)
 
         self.hpBar = HpBar(w, self)
         self.currentHpId = self.hpBar.currentHpId

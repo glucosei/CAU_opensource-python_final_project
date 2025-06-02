@@ -1,4 +1,5 @@
-from main.entity import EnemyTypeA
+from main.entity.EnemyTypeA import EnemyTypeA
+from main.entity.EnemyTypeB import EnemyTypeB
 import random as r
 
 class EnemySpawner:
@@ -18,31 +19,31 @@ class EnemySpawner:
             return None
 
         candidates = []
-
         y = 0
 
         for x in range(0, self.w.data.width - enemyWidth, 10):
-
             overlap = False
 
             for enemy in self.w.data.enemyList:
                 ex, ey = self.w.getPosition(enemy.id)
                 ew, eh = self.w.getSize(enemy.id)
 
-                if self._isColliding(x, y, enemyWidth+self.MARGIN, enemyHeight, ex, ey, ew, eh):
+                if self._isColliding(
+                        x - self.MARGIN, y - self.MARGIN,
+                        enemyWidth + 2 * self.MARGIN, enemyHeight + 2 * self.MARGIN,
+                        ex, ey, ew, eh
+                ):
                     overlap = True
                     break
 
             if not overlap:
                 candidates.append((x, y))
 
-
-
         if candidates:
             return r.choice(candidates)
 
-
         return None
+
 
 
     def stageOneSpawn(self):
@@ -54,11 +55,17 @@ class EnemySpawner:
 
 
     def stageTwoSpawn(self):
-        for i in range(5):
+        for i in range(2):
             result = self._findEnemyPosition(50, 50)
             if result is not None:
                 x, y=result
                 EnemyTypeA(self.w, x, y)
+
+        for i in range(2):
+            result = self._findEnemyPosition(50, 50)
+            if result is not None:
+                x, y=result
+                EnemyTypeB(self.w, x, y)
 
     def stageThreeSpawn(self):
         pass

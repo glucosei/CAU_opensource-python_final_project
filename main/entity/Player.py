@@ -22,7 +22,7 @@ class Player(BaseEntity):
         self.ax = 0
         self.ay = 0
 
-        self.bulletShooter = BulletShooter(w, 10, 0,10, 'p',600/60)
+        self.bulletShooter = BulletShooter(w, 10, 0,10, 'p',6,12,600/60)
         self.skillFlash = SkillFlash(w,self, 60*1)
 
 
